@@ -2,8 +2,8 @@ int mcd(int p,int q);
 int mcdv(int *v,int n);
 int menor_div(int n);
 int primo(int n);
-int fact_primos(int n, int *fp, int *nf, int nfmax);
-int desc_can(int n, int *fp, int *pots, int *nfd, int nfmax );
+int fact_primos(int n, int *fp, int *nf, int nfmax); //descompone un numero en todos sus factores primos en el arreglo fp
+int desc_can(int n, int *fp, int *pots, int *nfd, int nfmax ); //descompone un numero en sus factores primos en fp y guarda las potencias de cada numero
 
 int mcd(int p, int q) {
     if (p==0 && q == 0) return 0;
