@@ -11,7 +11,7 @@ int lec_M(int m, int n, double A[][40]) {
 	if(n <= 0 || n > 40 || m <= 0 || m > 40) return 0;
 	for(i = 0; i < m; i++) {
 		for(j = 0; j < n; j++) scanf("%lf", p++);
-		p = p+40-j;
+		p += 40-j;
 	}
 	
 	return 1;
@@ -29,7 +29,7 @@ int esc_M(int m, int n, double A[][40]) {
 	
 	for(i = 0; i < m; i++) {
 		for(j = 0; j < n; j++) 	printf(" %.2lf ", *p++);
-		p = p+40-j;
+		p += 40-j;
 		printf("\n");
 	}
 	
@@ -41,14 +41,18 @@ int prod_AB(int m, int n, int p, int q, double A[][40], double B[][40], double C
 	if (m<=0 || n<=0 || p<=0 || q<=0 || m>40 || n>40 || p>40 || q>40 || n!=p) return 0;
 	
 	int i,j,k;
-	double s;
+	double s,*pa,*pb,*pc;
+	pa = &A[0][0];
+	pb = &B[0][0];
+	pc = &C[0][0];
 	
 	for(i = 0; i < m; i++) {
 		for (j = 0;j < q; j++) {
 			s = 0.0;
-			for (k = 0; k < n; k++)	s += A[i][k]*B[k][j];
-			C[i][j] = s;
+			for (k = 0; k < n; k++)	s += (*(pa+i*40+k))*(*(pb+k*40+j));
+			*pc++ = s;
 		}
+		pc+= 40-j;
 	}
 	
 	return 1;
